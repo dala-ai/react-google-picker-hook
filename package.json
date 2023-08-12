@@ -13,6 +13,7 @@
   "module": "dist/useGooglePicker.mjs",
   "typings": "dist/useGooglePicker.d.ts",
   "files": [
+    "src",
     "dist"
   ],
   "exports": {
