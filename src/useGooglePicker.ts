@@ -10,7 +10,7 @@ import {
 } from './GoogleDrive';
 
 type Options = {
-  googleAppId: string;
+  googleAppId?: string;
   googleAppKey: string;
   googleAuthClientId: string;
   customPickerConfig?: CustomPickerConfiguration;
@@ -59,13 +59,16 @@ export const useGooglePicker = (
       : view;
 
     const picker = new google.picker.PickerBuilder()
-      .setAppId(options.googleAppId)
       .setOAuthToken(innerToken)
       .setDeveloperKey(options.googleAppKey)
       .addView(customView)
       .setCallback((result) =>
         callbackFunction(result as any as GoogleDrivePickerData, innerToken),
       );
+
+    if (options.googleAppId) {
+      picker.setAppId(options.googleAppId)
+    }
 
     const customPicker = options.appendCustomPickerConfig
       ? options.appendCustomPickerConfig(picker)
