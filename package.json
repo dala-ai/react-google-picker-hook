@@ -15,6 +15,14 @@
   "files": [
     "dist"
   ],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./src/useGooglePicker.ts",
+        "default": "./dist/useGooglePicker.js"
+      }
+    }
+  },
   "author": "Lukas Cizek (http://github.com/GLObus303)",
   "repository": {
     "type": "git",
