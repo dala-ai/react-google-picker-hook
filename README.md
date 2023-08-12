@@ -48,6 +48,7 @@ const [openPicker] = useGooglePicker(
     googleAppId: 'googleAppId',
     googleAuthClientId: 'googleAuthClientId',
     googleAppKey: 'googleAppKey',
+    initialToken: 'if you already have an access token from your server'
   },
 );
 

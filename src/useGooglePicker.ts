@@ -17,6 +17,7 @@ type Options = {
   onAuthFailed?: (response: TokenResponse) => void;
   appendCustomPickerConfig?: AppendCustomPickerConfig;
   appendCustomViewConfig?: AppendCustomViewConfig;
+  initialToken?: string;
   tokenClientConfig?: Partial<TokenClientConfig>;
 };
 
@@ -32,7 +33,7 @@ export const useGooglePicker = (
   });
 
   const [pickerApiLoaded, setPickerApiLoaded] = useState(false);
-  const [token, setToken] = useState<string>();
+  const [token, setToken] = useState<string>(options.initialToken);
 
   const config = {
     viewId: 'DOCS',
@@ -40,9 +41,7 @@ export const useGooglePicker = (
     ...options.customPickerConfig,
   };
 
-  const createPicker = (initialToken?: string) => {
-    const innerToken = initialToken || token;
-
+  const createPicker = (innerToken?: string) => {
     if (!innerToken) {
       return;
     }
@@ -93,7 +92,7 @@ export const useGooglePicker = (
 
   const openPicker = async () => {
     if (token) {
-      createPicker();
+      createPicker(token);
 
       return;
     }
